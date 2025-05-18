@@ -1,12 +1,12 @@
 
 import { Button } from "@/components/ui/button";
 import { WhatsappSettings } from "@/components/settings/WhatsappSettings";
-import { Header } from "@/components/layout/Header";
+import { NavigationMenu } from "@/components/layout/NavigationMenu";
 
 const Settings = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <NavigationMenu />
       <main className="container py-8">
         <div className="mb-8 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Configurações</h1>
