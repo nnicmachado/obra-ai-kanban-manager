@@ -8,6 +8,17 @@ import { sendWhatsappNotification } from "@/lib/whatsapp";
 
 // Initial tasks data
 const initialTasks: Record<string, TaskProps[]> = {
+  em_espera: [
+    { 
+      id: "task-4", 
+      title: "Instalações Hidráulicas", 
+      description: "Revisão das instalações hidráulicas do térreo", 
+      project: "Centro Comercial Planalto", 
+      responsible: "Ana Oliveira",
+      priority: "baixa",
+      index: 0
+    },
+  ],
   pendente: [
     { 
       id: "task-1", 
@@ -42,17 +53,6 @@ const initialTasks: Record<string, TaskProps[]> = {
       index: 0
     },
   ],
-  revisao: [
-    { 
-      id: "task-4", 
-      title: "Instalações Hidráulicas", 
-      description: "Revisão das instalações hidráulicas do térreo", 
-      project: "Centro Comercial Planalto", 
-      responsible: "Ana Oliveira",
-      priority: "baixa",
-      index: 0
-    },
-  ],
   concluido: [
     { 
       id: "task-5", 
@@ -67,11 +67,11 @@ const initialTasks: Record<string, TaskProps[]> = {
   ],
 };
 
-// Column definitions
+// Column definitions - reordered with "Em espera" first
 const columns = [
+  { id: "em_espera", title: "Em espera" },
   { id: "pendente", title: "Pendente" },
   { id: "em_progresso", title: "Em Progresso" },
-  { id: "revisao", title: "Revisão" },
   { id: "concluido", title: "Concluído" },
 ];
 
@@ -122,7 +122,7 @@ export function KanbanBoard() {
       const statusMap: Record<string, string> = {
         pendente: "Pendente",
         em_progresso: "Em Progresso",
-        revisao: "Em Revisão",
+        em_espera: "Em Espera",
         concluido: "Concluído"
       };
       

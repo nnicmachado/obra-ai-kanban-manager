@@ -9,20 +9,9 @@ interface KanbanColumnProps {
 }
 
 export function KanbanColumn({ id, title, tasks, provided }: KanbanColumnProps) {
-  // Determine the header background color based on column id
+  // Determine the header background color based on column id - now all use light red
   const getHeaderColor = () => {
-    switch(id) {
-      case "pendente":
-        return "bg-yellow-50 border-yellow-300";
-      case "em_progresso":
-        return "bg-blue-50 border-blue-300";
-      case "revisao":
-        return "bg-purple-50 border-purple-300";
-      case "concluido":
-        return "bg-green-50 border-green-300";
-      default:
-        return "bg-gray-50 border-gray-300";
-    }
+    return "bg-red-100 border-red-300";
   };
 
   return (

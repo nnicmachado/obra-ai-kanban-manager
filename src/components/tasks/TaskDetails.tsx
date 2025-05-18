@@ -21,6 +21,7 @@ export function TaskDetails({
   responsible: initialResponsible,
   priority: initialPriority,
   dueDate: initialDueDate,
+  index, // Added index property
   onClose
 }: TaskDetailsProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -44,7 +45,7 @@ export function TaskDetails({
         task: formData.title,
         status: newStatus === "pendente" ? "Pendente" : 
                newStatus === "em_progresso" ? "Em Progresso" : 
-               newStatus === "revisao" ? "Em Revisão" : "Concluído",
+               newStatus === "em_espera" ? "Em Espera" : "Concluído", // Updated status name
         project: formData.project,
         responsible: formData.responsible
       });
@@ -211,12 +212,12 @@ export function TaskDetails({
             Em Progresso
           </Button>
           <Button 
-            variant={status === "revisao" ? "default" : "outline"} 
+            variant={status === "em_espera" ? "default" : "outline"} 
             size="sm"
-            onClick={() => handleStatusChange("revisao")}
-            className={status === "revisao" ? "bg-brand-red hover:bg-red-600" : ""}
+            onClick={() => handleStatusChange("em_espera")}
+            className={status === "em_espera" ? "bg-brand-red hover:bg-red-600" : ""}
           >
-            Revisão
+            Em Espera
           </Button>
           <Button 
             variant={status === "concluido" ? "default" : "outline"} 
