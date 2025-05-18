@@ -1,11 +1,12 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Progress as ProgressBar } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChartContainer } from "@/components/ui/chart";
-import { Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { NavigationMenu } from "../components/layout/NavigationMenu";
 
 // Sample data - in a real app this would come from a database
 const constructionProjects = [
@@ -53,12 +54,13 @@ const chartConfig = {
   pendente: { label: "Pendente", color: "#f87171" },
 };
 
-const Progress = () => {
+const ProgressPage = () => {
   const [selectedProject, setSelectedProject] = useState(constructionProjects[0].id);
   const currentProject = constructionProjects.find(p => p.id === selectedProject) || constructionProjects[0];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
+      <NavigationMenu />
       <div className="container mx-auto py-8 px-4">
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h1 className="text-2xl font-bold">Progresso da Obra</h1>
@@ -95,7 +97,7 @@ const Progress = () => {
                   <span className="text-base font-medium">{currentProject.progress}% Concluído</span>
                   <span className="text-sm font-medium text-gray-500">{currentProject.progress}/100</span>
                 </div>
-                <Progress value={currentProject.progress} className="h-4" />
+                <ProgressBar value={currentProject.progress} className="h-4" />
               </div>
             </CardContent>
           </Card>
@@ -138,19 +140,19 @@ const Progress = () => {
                             <span>Concluído</span>
                             <span>{phase.concluido}%</span>
                           </div>
-                          <Progress value={phase.concluido} className="h-2 bg-gray-100" />
+                          <ProgressBar value={phase.concluido} className="h-2 bg-gray-100" />
                           
                           <div className="flex justify-between text-sm mt-1">
                             <span>Em Progresso</span>
                             <span>{phase.emProgresso}%</span>
                           </div>
-                          <Progress value={phase.emProgresso} className="h-2 bg-gray-100" />
+                          <ProgressBar value={phase.emProgresso} className="h-2 bg-gray-100" />
                           
                           <div className="flex justify-between text-sm mt-1">
                             <span>Pendente</span>
                             <span>{phase.pendente}%</span>
                           </div>
-                          <Progress value={phase.pendente} className="h-2 bg-gray-100" />
+                          <ProgressBar value={phase.pendente} className="h-2 bg-gray-100" />
                         </div>
                       </div>
                     ))}
@@ -174,4 +176,4 @@ const Progress = () => {
   );
 };
 
-export default Progress;
+export default ProgressPage;
